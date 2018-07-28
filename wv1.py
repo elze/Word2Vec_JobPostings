@@ -38,16 +38,15 @@ def read_input():
 	return oneLineJobDescriptions
 
 
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
-model = Word2Vec(read_input(), iter=10, min_count=10, size=300, workers=4)
+sampleSentences = [['Experience', 'in', 'ASP.NET MVC', 'and', 'WebAPI'], ['Strong', 'JavaScript', 'background'], ['Proficiency', 'in', 'SQL Server'], ['Knowledge', 'working', 'in', 'AWS', 'Azure', 'or', 'other', 'cloud' 'services']]
+# train word2vec on the two sentences
+#model = gensim.models.Word2Vec(sentences, min_count=1)
 
+
+model = gensim.models.Word2Vec(sampleSentences, iter=10, min_count=1, size=300, workers=4)
 vocab_size = len(model.wv.vocab)
 print ("vocab_size = " + str(vocab_size))
-#print(model.wv.index2word[vocab_size - 1], model.wv.index2word[vocab_size - 2], model.wv.index2word[vocab_size - 3])
 
 for i in range(vocab_size - 1):
-	print(model.wv.index2word[i])
-
-
-
+	print(model.wv.index2word[i])	
 
